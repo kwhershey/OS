@@ -1,2 +1,2 @@
-export GIT_GGL_NO_VERIFY=true
+export GIT_SSL_NO_VERIFY=true
 git push
