@@ -1,4 +1,4 @@
-Compile with: gcc -I/usr/pkg/include -L/usr/pkg/lib main.c -lreadline -lncurses
+Compile with make
 
 My file currently works for single word commands and most arguments.  Does
 not seem to work with the wildcard character, cd, or going back to previous
