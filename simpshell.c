@@ -38,12 +38,20 @@ int main(){
 		}
 		//NULL terminates the parameter array as required by execvp
 		param[index]=NULL;
-		if(fork()!=0){
-			waitpid(-1,0);
+		//the main action.  This forks the processes, the parent waits
+		//for the child to finish before continuing
+		//if the function is cd, we want to change directories of the parent,
+		//so do that instead of forking a child.
+		if(strcmp(param[0],"cd")==0){
+			chdir(param[1]);
 		}else{
-			if(execvp(command,param)){
-				printf("Command not found\n");
-				break;
+			if(fork()!=0){
+				waitpid(-1,0);
+			}else{
+				if(execvp(command,param)){
+					printf("Command not found\n");
+					break;
+				}
 			}
 		}
 	}
